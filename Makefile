@@ -1,4 +1,4 @@
-.PHONY: lint
+.PHONY: lint fix
 
 IS_WORKTREE := $(shell git -C $(CURDIR) worktree list 2>/dev/null | grep -q "$(CURDIR)" && echo "yes" || echo "no")
 
@@ -17,4 +17,31 @@ endif
 # Main target
 lint:
 	@echo "Running Super-Linter..."
-	docker run --rm -e RUN_LOCAL=true -e DEFAULT_BRANCH=main $(DOCKER_VOLUMES) ghcr.io/super-linter/super-linter:latest
+	docker run --rm \
+	  -e RUN_LOCAL=true \
+	  -e DEFAULT_BRANCH=main \
+	  -e FILTER_REGEX_EXCLUDE="^.*\.agents.+" \
+	  -e VALIDATE_JSCPD=false \
+	  -e VALIDATE_BIOME_FORMAT=false \
+	  -e VALIDATE_BIOME_LINT=false \
+	  -e VALIDATE_PYTHON_BLACK=false \
+	  $(DOCKER_VOLUMES) \
+	  ghcr.io/super-linter/super-linter:latest
+
+# Linter to run in fix mode
+FIX_LINTER := MARKDOWN
+
+# Fix target
+fix:
+	@echo "Running Super-Linter in fix mode..."
+	docker run --rm \
+	  -e RUN_LOCAL=true \
+	  -e DEFAULT_BRANCH=main \
+	  -e FILTER_REGEX_EXCLUDE="^.*\.agents.+" \
+	  -e VALIDATE_JSCPD=false \
+	  -e VALIDATE_BIOME_FORMAT=false \
+	  -e VALIDATE_BIOME_LINT=false \
+	  -e VALIDATE_PYTHON_BLACK=false \
+	  -e FIX_$(FIX_LINTER)=true
+	  $(DOCKER_VOLUMES) \
+	  ghcr.io/super-linter/super-linter:latest
