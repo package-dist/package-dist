@@ -1,5 +1,10 @@
 # Contribution Guide
 
+## Development Environment
+
+Follow the [dev environment](./contributing/dev-environment.md) instructions to set up your local
+coding environment. Our global project lint checks can be run locally using Docker.
+
 ## Submitting Code Changes
 
 Contributions should be done in a fork of this repository and submitted with a GitHub pull request.
