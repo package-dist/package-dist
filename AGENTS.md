@@ -11,6 +11,12 @@
 - `translators/` contains `package-dist` translation server implementations for specific
   ecosystems.
 
+## Development Process
+
+Make sure your development environment has GNU Make and Docker installed, as described in the
+[dev environment](./contributing/dev-environment.md) guide. Before committing changes, run
+`make lint` to verify your code meets project standards.
+
 ## Commits and Pull Requests
 
 - Use conventional commits format, with subject lines less than 72 characters and body lines less
