@@ -22,8 +22,8 @@ jobs:
       packages: read
       # issues and pull-requests permissions to write results as pull
       # request comments. Omit them if you don't need summary comments
-      issues: write
-      pull-requests: write
+      issues: read
+      pull-requests: read
       # To report GitHub Actions status checks. Omit if you don't need
       # to update commit status
       statuses: write
@@ -40,6 +40,7 @@ jobs:
       - name: Super-linter
         uses: super-linter/super-linter@4ce20838b8ab83717e78138c5b3a1407148e0918 # v8.7.0
         env:
+          ENABLE_GITHUB_PULL_REQUEST_SUMMARY_COMMENT: false
           FILTER_REGEX_EXCLUDE: '^.*\.agents.+'
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
