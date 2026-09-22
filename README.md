@@ -64,3 +64,16 @@ architecture-beta
   npm:T --> B:npmT
 
 ```
+
+## What's in here
+
+`package-dist` is organized as a monorepo, with the following focused subdirectories:
+
+- `clients/` for `package-dist` client implementations
+- `docs/` for public-facing documentation
+- `reps/` for the technical _representation_ of a software package within a `package-dist`
+  container registry.
+- `translators/` for `package-dist` translation server implementations
+
+This project uses [OpenSpec](https://openspec.dev/) to encourage spec-driven software development.
+Feature proposals, specs, and tasks all live within the `openspec` folder.
