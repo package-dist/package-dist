@@ -42,6 +42,6 @@ fix:
 	  -e VALIDATE_BIOME_FORMAT=false \
 	  -e VALIDATE_BIOME_LINT=false \
 	  -e VALIDATE_PYTHON_BLACK=false \
-	  -e FIX_$(FIX_LINTER)=true
+	  -e FIX_$(FIX_LINTER)=true \
 	  $(DOCKER_VOLUMES) \
 	  ghcr.io/super-linter/super-linter:latest
